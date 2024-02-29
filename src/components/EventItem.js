@@ -1,8 +1,15 @@
-import classes from './EventItem.module.css';
+import { Link, useSubmit } from "react-router-dom";
+import classes from "./EventItem.module.css";
 
 function EventItem({ event }) {
+  const submit = useSubmit();
   function startDeleteHandler() {
-    // ...
+    const confirm = window.confirm("Are you sure?");
+    if (confirm) {
+      submit(null, { method: "delete" });
+      /* submit({yaha par data jo ki form data ki tarah reat hoga for contexxt see new event page },
+      {method:'delete',action:'koi dusra route ka action use krna chaheye hai tou wo route specify'})*/
+    }
   }
 
   return (
@@ -12,7 +19,7 @@ function EventItem({ event }) {
       <time>{event.date}</time>
       <p>{event.description}</p>
       <menu className={classes.actions}>
-        <a href="edit">Edit</a>
+        <Link to="edit">Edit</Link>
         <button onClick={startDeleteHandler}>Delete</button>
       </menu>
     </article>

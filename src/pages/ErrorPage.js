@@ -7,8 +7,8 @@ export default function Errorpage() {
 
   let title = "An error occured";
   let message = "someting went wrong";
-
-  if (error.status === 500) message = JSON.parse(error.data).message;
+  console.log(error.status,"hello hello");
+  if (error.status === 500) message = error.data.message;
 
   if (error.status === 404) {
     title = "Not found!";
